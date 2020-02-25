@@ -67,10 +67,11 @@ extern int yydebug;
     THEN = 277,
     ELSE = 278,
     ELLIPSIS = 279,
-    LE = 280,
-    GE = 281,
-    EQ = 282,
-    NE = 283
+    SWAP = 280,
+    LE = 281,
+    GE = 282,
+    EQ = 283,
+    NE = 284
   };
 #endif
 /* Tokens.  */
@@ -96,10 +97,11 @@ extern int yydebug;
 #define THEN 277
 #define ELSE 278
 #define ELLIPSIS 279
-#define LE 280
-#define GE 281
-#define EQ 282
-#define NE 283
+#define SWAP 280
+#define LE 281
+#define GE 282
+#define EQ 283
+#define NE 284
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED

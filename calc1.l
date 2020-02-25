@@ -13,28 +13,12 @@
 ">=" return GE;
 "==" return EQ;
 "!=" return NE;
+":=:" return SWAP;
 ",...," return ELLIPSIS;
-"while" return WHILE;
-"if" return IF;
-"else" return ELSE;
 
-"and" return AND; 
-"do" return DO;
-"or" return OR; 
-"then" return THEN;
 "array" return ARRAY; 
-"int" return INTEGER;
-"procedure" return PROCEDURE;
-"value" return VALUE;
-"start" return START;
-"end" return END;
-"mod" return MOD;
-"rem" return REM;
-"boolean" return BOOLEAN;
-"for" return FOR;
-"not" return NOT;
-"string" return STRING;
 
+"int"|"string"|"boolean" {return DATATYPE;}
 
 [a-zA-Z]+ {  
                 yylval = *yytext - 'a';

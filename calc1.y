@@ -3,14 +3,15 @@
 	#include <math.h>
     int yylex(void);
     void yyerror(char *);
+    void swap(int *, int *);
     void while_f();
     int sym[26],i=0;
 %}
 
-%token INTEGER FLOAT STRING BOOLEAN ARRAY VAR 
+%token INTEGER FLOAT STRING BOOLEAN ARRAY VAR  
 %token WHILE FOR IF DO END
 %token AND OR PROCEDURE VALUE START MOD REM NOT
-%nonassoc THEN ELSE ELLIPSIS 
+%nonassoc THEN ELSE ELLIPSIS SWAP
 %left LE GE EQ NE '>' '<'
 %left '+' '-'
 %left '*' '^' '/' 
@@ -39,6 +40,7 @@ expr:
         | expr '-' expr           { $$ = $1 - $3; }
         | expr '^' expr           { $$ = pow($2,$3); }
         | '(' expr ')'            { $$ = $2;}
+        | expr SWAP expr          { swap($1,$2);}
         ;
 
 
@@ -59,3 +61,10 @@ int main(void) {
     yyparse();
     return 0;
 	}
+
+void swap(int *v1, int *v2){
+    int temp;
+    temp = *v1;
+    *v1 = *v2;
+    *v2 = temp;
+}
