@@ -45,63 +45,31 @@ extern int yydebug;
 # define YYTOKENTYPE
   enum yytokentype
   {
-    INTEGER = 258,
-    FLOAT = 259,
-    STRING = 260,
-    BOOLEAN = 261,
-    ARRAY = 262,
-    VAR = 263,
-    WHILE = 264,
-    FOR = 265,
-    IF = 266,
-    DO = 267,
-    END = 268,
-    AND = 269,
-    OR = 270,
-    PROCEDURE = 271,
-    VALUE = 272,
-    START = 273,
-    MOD = 274,
-    REM = 275,
-    NOT = 276,
-    THEN = 277,
-    ELSE = 278,
-    ELLIPSIS = 279,
-    SWAP = 280,
-    LE = 281,
-    GE = 282,
-    EQ = 283,
-    NE = 284
+    DATA_TYPE = 258,
+    INTEGER = 259,
+    ARRAY = 260,
+    VAR = 261,
+    COMMA = 262,
+    ELLIPSIS = 263,
+    SWAP = 264,
+    LE = 265,
+    GE = 266,
+    EQ = 267,
+    NE = 268
   };
 #endif
 /* Tokens.  */
-#define INTEGER 258
-#define FLOAT 259
-#define STRING 260
-#define BOOLEAN 261
-#define ARRAY 262
-#define VAR 263
-#define WHILE 264
-#define FOR 265
-#define IF 266
-#define DO 267
-#define END 268
-#define AND 269
-#define OR 270
-#define PROCEDURE 271
-#define VALUE 272
-#define START 273
-#define MOD 274
-#define REM 275
-#define NOT 276
-#define THEN 277
-#define ELSE 278
-#define ELLIPSIS 279
-#define SWAP 280
-#define LE 281
-#define GE 282
-#define EQ 283
-#define NE 284
+#define DATA_TYPE 258
+#define INTEGER 259
+#define ARRAY 260
+#define VAR 261
+#define COMMA 262
+#define ELLIPSIS 263
+#define SWAP 264
+#define LE 265
+#define GE 266
+#define EQ 267
+#define NE 268
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED

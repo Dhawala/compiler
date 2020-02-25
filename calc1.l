@@ -17,8 +17,8 @@
 ",...," return ELLIPSIS;
 
 "array" return ARRAY; 
-
-"int"|"string"|"boolean" {return DATATYPE;}
+"int"   return DATA_TYPE;
+","     return COMMA;
 
 [a-zA-Z]+ {  
                 yylval = *yytext - 'a';
@@ -28,13 +28,7 @@
 [0-9]+      {
                 yylval = atoi(yytext);
                 return INTEGER;
-            }
-
-([0-9]*[.])?[0-9]+ {
-                yylval = atoi(yytext);
-                return FLOAT;
-                }            
-
+            }           
 
 [-+()\^=/*{};.]      { return *yytext; }
 

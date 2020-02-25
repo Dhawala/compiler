@@ -5,13 +5,11 @@
     void yyerror(char *);
     void swap(int *, int *);
     void while_f();
-    int sym[26],i=0;
+    int sym[26],temp;
 %}
 
-%token INTEGER FLOAT STRING BOOLEAN ARRAY VAR  
-%token WHILE FOR IF DO END
-%token AND OR PROCEDURE VALUE START MOD REM NOT
-%nonassoc THEN ELSE ELLIPSIS SWAP
+%token DATA_TYPE INTEGER ARRAY VAR COMMA
+%nonassoc ELLIPSIS SWAP
 %left LE GE EQ NE '>' '<'
 %left '+' '-'
 %left '*' '^' '/' 
@@ -25,22 +23,23 @@ program:
 
 statement:  expr          { printf("%d\n", $1); }
             |VAR '=' expr { sym[$1] = $3; }	
+            |DATA_TYPE vars
             ;
 
+vars:   vars COMMA VAR                  { sym[$3]; }
+        |vars COMMA VAR '=' expr        { sym[$3] = $5; }
+        | VAR                           { sym[$1]; }
+        | VAR '=' expr                  { sym[$1] = $3; }
 expr:
-        INTEGER
-        |FLOAT
-        |STRING
-        |BOOLEAN
-        |ARRAY
-        |VAR                      { $$ = sym[$1]; }  
+        |INTEGER
+        | VAR                     { $$ = sym[$1]; } 
         | expr '/' expr           { $$ = $1 / $3; }   
         | expr '*' expr           { $$ = $1 * $3; }
         | expr '+' expr           { $$ = $1 + $3; }
         | expr '-' expr           { $$ = $1 - $3; }
         | expr '^' expr           { $$ = pow($2,$3); }
         | '(' expr ')'            { $$ = $2;}
-        | expr SWAP expr          { swap($1,$2);}
+        | VAR SWAP VAR            { swap(&sym[$1],&sym[$3]);} 
         ;
 
 
@@ -50,19 +49,12 @@ void yyerror(char *s) {
     fprintf(stderr, "%s\n", s);
 }
 
-void while_f(){
-
-             for(i=0;i<=10;i++){
-                 printf("%d\n",i);
-             }
-    }
-
 int main(void) {
     yyparse();
     return 0;
 	}
 
-void swap(int *v1, int *v2){
+void swap(int *v1, int *v2 ){
     int temp;
     temp = *v1;
     *v1 = *v2;
